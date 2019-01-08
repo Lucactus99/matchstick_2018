@@ -34,6 +34,13 @@ int my_getnbr(char *);
 int my_strlen(char *);
 int my_putstr(char const *);
 char *get_next_line(int);
+char **fill_pipes_spaces(char **map, int i, struct data *dt, int nbrStars);
+char **create_map(struct data *dt);
+char **modify_map(char **map, struct data *dt);
+void display_map(char **map);
+int game(char **map, struct data *dt);
+int nbr_pipes(char **map, int line);
+int check_remaining_pipes(char **map, struct data *dt);
 
 #endif //READ_SIZE
 #endif //MY_H_

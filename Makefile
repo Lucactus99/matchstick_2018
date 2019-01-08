@@ -9,13 +9,15 @@
 
 CC      =       gcc
 
-SRC     =	main.c \
-			src/my_putchar.c \
-			src/my_putstr.c \
-			src/my_getnbr.c \
-			src/get_next_line.c \
-			src/my_put_nbr.c \
-			src/my_str_isnum.c
+SRC     =	matchstick_main.c \
+            matchstick_map.c \
+            matchstick_game.c \
+            src/my_putchar.c \
+            src/my_putstr.c \
+            src/my_getnbr.c \
+            src/get_next_line.c \
+            src/my_put_nbr.c \
+            src/my_str_isnum.c
 
 OBJ     =       $(SRC:.c=.o)
 

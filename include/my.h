@@ -23,10 +23,13 @@ struct data
     int length;
     int line;
     int matches;
+    int maxMatches;
 };
 
 
 void my_putchar(char);
+int my_put_nbr(int nb);
+int my_str_isnum(char *str);
 int my_getnbr(char *);
 int my_strlen(char *);
 int my_putstr(char const *);

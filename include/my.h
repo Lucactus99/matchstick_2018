@@ -34,22 +34,30 @@ struct a_intelligence
 
 
 void my_putchar(char);
-int my_put_nbr(int nb);
-int my_str_isnum(char *str);
+int my_put_nbr(int);
+int my_str_isnum(char *);
 int my_getnbr(char *);
 int my_strlen(char *);
 int my_putstr(char const *);
 char *get_next_line(int);
-char **fill_pipes_spaces(char **map, int i, struct data *dt, int nbrStars);
-char **create_map(struct data *dt);
-char **modify_map(char **map, struct data *dt);
-void display_map(char **map);
-int game(char **map, struct data *dt);
-int nbr_pipes(char **map, int line);
-int check_remaining_pipes(char **map, struct data *dt);
-char **ai_main(struct a_intelligence *ai, struct data *dt, char **map);
-char **modify_map_ai(char **map, struct data *dt, struct a_intelligence *ai);
-int check_remaining_on_line(int line, struct data *dt, char **map);
+char **fill_pipes_spaces(char **, int , struct data *, int);
+char **create_map(struct data *);
+char **modify_map(char **, struct data *);
+void display_map(char **);
+int game(char **, struct data *);
+int nbr_pipes(char **, int);
+int check_remaining_pipes(char **, struct data *);
+char **ai_main(struct a_intelligence *, struct data *, char **);
+char **modify_map_ai(char **, struct data *, struct a_intelligence *);
+int check_remaining_on_line(int , struct data *, char **);
+int randomize(int, int);
+int check_errors(int, char **);
+int loop(char **, struct data *, struct a_intelligence *);
+int game_line(struct data *);
+int game_matches(struct data *, char **);
+char **game_update_player(struct data *, char **);
+char **remove_matches(char **, struct data *, int);
+char **remove_matches_ai(char **, struct a_intelligence *, int);
 
 #endif //READ_SIZE
 #endif //MY_H_

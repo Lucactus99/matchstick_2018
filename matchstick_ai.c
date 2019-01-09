@@ -13,7 +13,7 @@ int only_one_line_remaining(char **map, struct data *dt)
 
     if (check_remaining_pipes(map, dt) == 1)
         return (0);
-    for (int i = 1; i <= dt->length; i ++)
+    for (int i = 1; i <= dt->length; i++)
         if (check_remaining_on_line(i, dt, map) > 0)
             nbr++;
     return (nbr);
@@ -28,22 +28,6 @@ char **game_update_ai(struct a_intelligence *ai, char **map, struct data *dt)
     my_putchar('\n');
     map = modify_map_ai(map, dt, ai);
     return (map);
-}
-
-int randomize(int min, int max)
-{
-    return ((rand() % (max + 1 - min)) + min);
-}
-
-int check_remaining_on_line(int line, struct data *dt, char **map)
-{
-    int nbr = 0;
-
-    for (int i = 1; i <= dt->length + 3; i ++) {
-        if (map[line][i] == '|')
-            nbr++;
-    }
-    return (nbr);
 }
 
 int ai_line(struct a_intelligence *ai, struct data *dt, char **map)
@@ -61,13 +45,12 @@ int ai_line(struct a_intelligence *ai, struct data *dt, char **map)
 void ai_matches(struct a_intelligence *ai, struct data *dt, char **map)
 {
     if (only_one_line_remaining(map, dt) == 1) {
-        if (check_remaining_on_line(ai->line, dt, map) <= dt->maxMatches) {
+        if (check_remaining_on_line(ai->line, dt, map) <= dt->maxMatches)
             ai->matches = check_remaining_on_line(ai->line, dt, map) - 1;
-            if (ai->matches == 0)
-                ai->matches = 1;
-        }
     } else
-        ai->matches = randomize(1, check_remaining_on_line(ai->line, dt, map));
+        ai->matches = randomize(1, dt->maxMatches);
+    if (ai->matches == 0)
+        ai->matches = 1;
 }
 
 char **ai_main(struct a_intelligence *ai, struct data *dt, char **map)

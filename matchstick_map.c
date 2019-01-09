@@ -43,26 +43,6 @@ char **create_map(struct data *dt)
     return (map);
 }
 
-char **remove_matches_ai(char **map, struct a_intelligence *ai, int i)
-{
-    while (ai->matches > 0) {
-        i--;
-        map[ai->line][i] = ' ';
-        ai->matches--;
-    }
-    return (map);
-}
-
-char **remove_matches(char **map, struct data *dt, int i)
-{
-    while (dt->matches > 0) {
-        i--;
-        map[dt->line][i] = ' ';
-        dt->matches--;
-    }
-    return (map);
-}
-
 char **modify_map_ai(char **map, struct data *dt, struct a_intelligence *ai)
 {
     int i = 0;

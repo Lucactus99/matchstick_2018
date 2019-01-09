@@ -7,6 +7,31 @@
 
 #include "my.h"
 
+char **remove_matches_ai(char **map, struct a_intelligence *ai, int i)
+{
+    while (ai->matches > 0) {
+        i--;
+        map[ai->line][i] = ' ';
+        ai->matches--;
+    }
+    return (map);
+}
+
+char **remove_matches(char **map, struct data *dt, int i)
+{
+    while (dt->matches > 0) {
+        i--;
+        map[dt->line][i] = ' ';
+        dt->matches--;
+    }
+    return (map);
+}
+
+int randomize(int min, int max)
+{
+    return ((rand() % (max + 1 - min)) + min);
+}
+
 int nbr_pipes(char **map, int line)
 {
     int nbr = 0;
@@ -16,34 +41,6 @@ int nbr_pipes(char **map, int line)
             nbr++;
     }
     return (nbr);
-}
-
-int check_remaining_pipes_2(char **map, struct data *dt, int i)
-{
-    for (int j = 1; j <= dt->length + 3; j++) {
-        if (map[i][j] == '|')
-            return (0);
-    }
-    return (1);
-}
-
-int check_remaining_pipes(char **map, struct data *dt)
-{
-    for (int i = 1; i <= dt->length; i++)
-        if (check_remaining_pipes_2(map, dt, i) == 0)
-            return (0);
-    return (1);
-}
-
-int check_errors(int ac, char **av)
-{
-    for (int i = 1; i < ac; i++) {
-        if (my_str_isnum(av[i]) == 0)
-            return (84);
-    }
-    if (ac != 3)
-        return (84);
-    return (0);
 }
 
 int main(int ac, char **av)

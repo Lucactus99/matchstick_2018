@@ -32,7 +32,7 @@ int game_matches(struct data *dt, char **map)
     return (0);
 }
 
-char **game_update(struct data *dt, char **map)
+char **game_update_player(struct data *dt, char **map)
 {
     my_putstr("Player removed ");
     my_putchar(dt->matches + 48);
@@ -43,35 +43,47 @@ char **game_update(struct data *dt, char **map)
     return (map);
 }
 
-int loop(char **map, struct data *dt)
+int loop(char **map, struct data *dt, struct a_intelligence *ai)
 {
-    int loop = 1;
+    int looper = 1;
 
-    while (loop) {
-        if (game_line(dt) == 84)
-            return (84);
-        if (game_matches(dt, map) == 84)
-            return (84);
-        map = game_update(dt, map);
+    while (looper) {
+        my_putstr("\nYour turn:\n");
+        while (game_line(dt) == 84) {
+            if (check_remaining_pipes(map, dt) == 1)
+                return (2);
+        }
+        while (game_matches(dt, map) == 84) {
+            while (game_line(dt) == 84) {
+                if (check_remaining_pipes(map, dt) == 1)
+                    return (2);
+            }
+        }
+        map = game_update_player(dt, map);
         if (check_remaining_pipes(map, dt) == 1)
+            return (2);
+        display_map(map);
+        map = ai_main(ai, dt, map);
+        if (map == NULL)
             return (0);
         display_map(map);
-        my_putstr("Your turn:\n");
     }
     return (1);
 }
 
 int game(char **map, struct data *dt)
 {
+    struct a_intelligence *ai = malloc(sizeof(struct a_intelligence));
     int game = 1;
 
     dt->line = 0;
     dt->matches = 0;
     display_map(map);
-    my_putstr("Your turn:\n");
-    while (game) {
-        if (loop(map, dt) == 0)
-            break;
-    }
+    while (game == 1)
+        game = loop(map, dt, ai);
+    if (game == 2)
+        my_putstr("You lost, too bad...\n");
+    else
+        my_putstr("I lost... snif... but I'll get you next time!!\n");
     return (0);
 }

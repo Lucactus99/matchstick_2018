@@ -12,6 +12,7 @@ CC      =       gcc
 SRC     =	matchstick_main.c \
             matchstick_map.c \
             matchstick_game.c \
+            matchstick_ai.c \
             src/my_putchar.c \
             src/my_putstr.c \
             src/my_getnbr.c \

@@ -26,6 +26,12 @@ struct data
     int maxMatches;
 };
 
+struct a_intelligence
+{
+    int line;
+    int matches;
+};
+
 
 void my_putchar(char);
 int my_put_nbr(int nb);
@@ -41,6 +47,9 @@ void display_map(char **map);
 int game(char **map, struct data *dt);
 int nbr_pipes(char **map, int line);
 int check_remaining_pipes(char **map, struct data *dt);
+char **ai_main(struct a_intelligence *ai, struct data *dt, char **map);
+char **modify_map_ai(char **map, struct data *dt, struct a_intelligence *ai);
+int check_remaining_on_line(int line, struct data *dt, char **map);
 
 #endif //READ_SIZE
 #endif //MY_H_

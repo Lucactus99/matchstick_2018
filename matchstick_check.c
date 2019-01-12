@@ -37,11 +37,11 @@ int check_remaining_pipes(char **map, struct data *dt)
 
 int check_errors(int ac, char **av)
 {
+    if (ac != 3)
+        return (84);
     for (int i = 1; i < ac; i++) {
         if (my_str_isnum(av[i]) == 0)
             return (84);
     }
-    if (ac != 3)
-        return (84);
     return (0);
 }

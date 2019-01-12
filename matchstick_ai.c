@@ -22,9 +22,9 @@ int only_one_line_remaining(char **map, struct data *dt)
 char **game_update_ai(struct a_intelligence *ai, char **map, struct data *dt)
 {
     my_putstr("AI removed ");
-    my_putchar(ai->matches + 48);
+    my_put_nbr(ai->matches);
     my_putstr(" match(es) from line ");
-    my_putchar(ai->line + 48);
+    my_put_nbr(ai->line);
     my_putchar('\n');
     map = modify_map_ai(map, dt, ai);
     return (map);

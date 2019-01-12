@@ -53,7 +53,7 @@ int check_remaining_on_line(int , struct data *, char **);
 int randomize(int, int);
 int check_errors(int, char **);
 int loop(char **, struct data *, struct a_intelligence *);
-int game_line(struct data *);
+int game_line(struct data *, char **);
 int game_matches(struct data *, char **);
 char **game_update_player(struct data *, char **);
 char **remove_matches(char **, struct data *, int);

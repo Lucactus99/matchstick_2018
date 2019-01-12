@@ -9,31 +9,46 @@
 
 int loop_line(char **map, struct data *dt)
 {
-    while (game_line(dt) == 84) {
-        if (check_remaining_pipes(map, dt) == 1)
-            return (2);
+    int a = 84;
+
+    while (a == 84) {
+        a = game_line(dt, map);
+        if (a == 42)
+            return (42);
     }
     return (0);
 }
 
 int loop_matches(char **map, struct data *dt)
 {
-    while (game_matches(dt, map) == 84)
-        if (loop_line(map, dt) == 2)
-            return (2);
+    int a = 84;
+
+    while (a == 84) {
+        a = game_matches(dt, map);
+        if (a == 42)
+            return (42);
+    }
     return (0);
 }
 
 int loop(char **map, struct data *dt, struct a_intelligence *ai)
 {
     int looper = 1;
+    int a = 0;
+    int b = 0;
 
     while (looper) {
         my_putstr("\nYour turn:\n");
-        if (loop_line(map, dt) == 84)
+        a = loop_line(map, dt);
+        if (a == 84)
             return (2);
-        if (loop_matches(map, dt) == 84)
+        else if (a == 42)
+            return (42);
+        b = loop_matches(map, dt);
+        if (b == 84)
             return (2);
+        else if (b == 42)
+            return (42);
         map = game_update_player(dt, map);
         if (check_remaining_pipes(map, dt) == 1)
             return (2);

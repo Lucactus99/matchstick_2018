@@ -48,12 +48,12 @@ int main(int ac, char **av)
     struct data *dt = malloc(sizeof(struct data));
     char **map;
 
-    dt->length = my_getnbr(av[1]);
-    dt->maxMatches = my_getnbr(av[2]);
     if (check_errors(ac, av) == 84)
         return (84);
-    else
-        map = create_map(dt);
-    game(map, dt);
-    return (0);
+    dt->length = my_getnbr(av[1]);
+    dt->maxMatches = my_getnbr(av[2]);
+    if (dt->maxMatches < 1 || dt->length <= 1 || dt->length >= 100)
+        return (84);
+    map = create_map(dt);
+    return (game(map, dt));
 }

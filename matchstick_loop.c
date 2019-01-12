@@ -31,32 +31,44 @@ int loop_matches(char **map, struct data *dt)
     return (0);
 }
 
+int return_value(int nb)
+{
+    if (nb == 84)
+        return (2);
+    else if (nb == 42)
+        return (42);
+    return (0);
+}
+
+int loop_2(char **map, struct data *dt, struct a_intelligence *ai)
+{
+    map = game_update_player(dt, map);
+    if (check_remaining_pipes(map, dt) == 1)
+        return (2);
+    display_map(map);
+    map = ai_main(ai, dt, map);
+    if (map == NULL)
+        return (0);
+    display_map(map);
+    return (-1);
+}
+
 int loop(char **map, struct data *dt, struct a_intelligence *ai)
 {
     int looper = 1;
-    int a = 0;
-    int b = 0;
+    int nb = 0;
 
     while (looper) {
         my_putstr("\nYour turn:\n");
-        a = loop_line(map, dt);
-        if (a == 84)
-            return (2);
-        else if (a == 42)
-            return (42);
-        b = loop_matches(map, dt);
-        if (b == 84)
-            return (2);
-        else if (b == 42)
-            return (42);
-        map = game_update_player(dt, map);
-        if (check_remaining_pipes(map, dt) == 1)
-            return (2);
-        display_map(map);
-        map = ai_main(ai, dt, map);
-        if (map == NULL)
-            return (0);
-        display_map(map);
+        nb = loop_line(map, dt);
+        if (return_value(nb) != 0)
+            return (return_value(nb));
+        nb = loop_matches(map, dt);
+        if (return_value(nb) != 0)
+            return (return_value(nb));
+        nb = loop_2(map, dt, ai);
+        if (nb >= 0)
+            return (nb);
     }
     return (1);
 }

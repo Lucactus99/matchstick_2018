@@ -21,8 +21,24 @@ int game_line(struct data *dt, char **map)
         my_putstr("Error: invalid input (positive number expected)\n");
         return (84);
     }
-    if (dt->line > dt->length || dt->line < 1 || check_remaining_on_line(dt->line, dt, map) == 0) {
+    if (dt->line > dt->length || dt->line < 1 ||
+    check_remaining_on_line(dt->line, dt, map) == 0) {
         my_putstr("Error: this line is out of range\n");
+        return (84);
+    }
+    return (0);
+}
+
+int game_matches_errors(struct data *dt, char **map)
+{
+    if (dt->matches > nbr_pipes(map, dt->line)) {
+        my_putstr("Error: not enough matches on this line\n");
+        return (84);
+    }
+    if (dt->matches > dt->maxMatches) {
+        my_putstr("Error: you cannot remove more than ");
+        my_put_nbr(dt->maxMatches);
+        my_putstr(" matches per turn\n");
         return (84);
     }
     return (0);
@@ -46,16 +62,8 @@ int game_matches(struct data *dt, char **map)
         my_putstr("Error: you have to remove at least one match\n");
         return (84);
     }
-    if (dt->matches > nbr_pipes(map, dt->line)) {
-        my_putstr("Error: not enough matches on this line\n");
+    if (game_matches_errors(dt, map) == 84)
         return (84);
-    }
-    if (dt->matches > dt->maxMatches) {
-        my_putstr("Error: you cannot remove more than ");
-        my_put_nbr(dt->maxMatches);
-        my_putstr(" matches per turn\n");
-        return (84);
-    }
     return (0);
 }
 

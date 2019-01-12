@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2018
-** matchstick
+** EPITECH PROJECT, 2019
+** CPE_matchstick_2018
 ** File description:
 ** matchstick_main
 */

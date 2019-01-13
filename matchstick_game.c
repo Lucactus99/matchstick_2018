@@ -91,7 +91,7 @@ int game(char **map, struct data *dt)
     if (game == 2) {
         my_putstr("You lost, too bad...\n");
         return (2);
-    } else if (game == 1) {
+    } else if (game == 0) {
         my_putstr("I lost... snif... but I'll get you next time!!\n");
         return (1);
     }

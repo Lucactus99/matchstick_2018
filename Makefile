@@ -15,6 +15,7 @@ SRC     =	matchstick_main.c \
             matchstick_ai.c \
             matchstick_check.c \
             matchstick_loop.c \
+            matchstick_get_info.c \
             src/my_putchar.c \
             src/my_putstr.c \
             src/my_getnbr.c \

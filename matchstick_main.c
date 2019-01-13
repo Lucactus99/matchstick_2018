@@ -55,5 +55,6 @@ int main(int ac, char **av)
     if (dt->maxMatches < 1 || dt->length <= 1 || dt->length >= 100)
         return (84);
     map = create_map(dt);
+    dt->totalMatches = get_nbr_matches(map);
     return (game(map, dt));
 }

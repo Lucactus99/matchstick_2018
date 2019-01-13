@@ -20,6 +20,7 @@
 
 struct data
 {
+    int totalMatches;
     int length;
     int line;
     int matches;
@@ -29,6 +30,7 @@ struct data
 struct a_intelligence
 {
     int line;
+    int strategy;
     int matches;
 };
 
@@ -58,6 +60,7 @@ int game_matches(struct data *, char **);
 char **game_update_player(struct data *, char **);
 char **remove_matches(char **, struct data *, int);
 char **remove_matches_ai(char **, struct a_intelligence *, int);
+int get_nbr_matches(char **);
 
 #endif //READ_SIZE
 #endif //MY_H_

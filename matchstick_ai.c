@@ -48,7 +48,7 @@ void ai_matches(struct a_intelligence *ai, struct data *dt, char **map)
         if (check_remaining_on_line(ai->line, dt, map) <= dt->maxMatches)
             ai->matches = check_remaining_on_line(ai->line, dt, map) - 1;
     } else
-        ai->matches = randomize(1, dt->maxMatches);
+        ai->matches = randomize(1, check_remaining_on_line(ai->line, dt, map));
     if (ai->matches == 0)
         ai->matches = 1;
 }

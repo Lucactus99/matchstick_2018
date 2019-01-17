@@ -45,10 +45,13 @@ int ai_line(struct a_intelligence *ai, struct data *dt, char **map)
 void ai_matches(struct a_intelligence *ai, struct data *dt, char **map)
 {
     if (only_one_line_remaining(map, dt) == 1) {
-        if (check_remaining_on_line(ai->line, dt, map) <= dt->maxMatches)
+        if (check_remaining_on_line(ai->line, dt, map) <= dt->maxMatches + 1)
             ai->matches = check_remaining_on_line(ai->line, dt, map) - 1;
-    } else
+    } else {
         ai->matches = randomize(1, check_remaining_on_line(ai->line, dt, map));
+        if (ai->matches > dt->maxMatches)
+            ai->matches = dt->maxMatches;
+    }
     if (ai->matches == 0)
         ai->matches = 1;
 }

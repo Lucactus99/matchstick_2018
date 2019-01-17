@@ -28,7 +28,7 @@ int loop_matches(char **map, struct data *dt)
         if (a == 42)
             return (42);
         if (a == 84)
-            loop_line(map, dt);
+            a = loop_line(map, dt);
     }
     return (0);
 }

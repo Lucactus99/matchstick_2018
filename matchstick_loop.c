@@ -16,7 +16,7 @@ int loop_line(char **map, struct data *dt)
         if (a == 42)
             return (42);
     }
-    return (0);
+    return (loop_matches(map, dt));
 }
 
 int loop_matches(char **map, struct data *dt)
@@ -27,6 +27,8 @@ int loop_matches(char **map, struct data *dt)
         a = game_matches(dt, map);
         if (a == 42)
             return (42);
+        if (a == 84)
+            loop_line(map, dt);
     }
     return (0);
 }
@@ -61,9 +63,6 @@ int loop(char **map, struct data *dt, struct a_intelligence *ai)
     while (looper) {
         my_putstr("\nYour turn:\n");
         nb = loop_line(map, dt);
-        if (return_value(nb) != 0)
-            return (return_value(nb));
-        nb = loop_matches(map, dt);
         if (return_value(nb) != 0)
             return (return_value(nb));
         nb = loop_2(map, dt, ai);

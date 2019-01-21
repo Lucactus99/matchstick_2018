@@ -31,14 +31,14 @@ int game_line(struct data *dt, char **map)
 
 int game_matches_errors(struct data *dt, char **map)
 {
-    if (dt->matches > nbr_pipes(map, dt->line)) {
-        my_putstr("Error: not enough matches on this line\n");
-        return (84);
-    }
     if (dt->matches > dt->maxMatches) {
         my_putstr("Error: you cannot remove more than ");
         my_put_nbr(dt->maxMatches);
         my_putstr(" matches per turn\n");
+        return (84);
+    }
+    if (dt->matches > nbr_pipes(map, dt->line)) {
+        my_putstr("Error: not enough matches on this line\n");
         return (84);
     }
     return (0);
@@ -89,9 +89,11 @@ int game(char **map, struct data *dt)
     while (game == 1)
         game = loop(map, dt, ai);
     if (game == 2) {
+        display_map(map);
         my_putstr("You lost, too bad...\n");
         return (2);
     } else if (game == 0) {
+        display_map(map);
         my_putstr("I lost... snif... but I'll get you next time!!\n");
         return (1);
     }

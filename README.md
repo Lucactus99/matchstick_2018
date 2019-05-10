@@ -1,7 +1,14 @@
-This project is based on a very famous game based on matchsticks.
+USAGE:
 
-There is a certain number of matchstick lines.
+	./matchstick [number of lines] [max number of matches per turn]
 
-The two players take turns; each player can, on a same line, take one or several matchsticks.
+DESCRIPTION:
 
-The losing player is the one to take the last matchstick.
+	This project is based on a very famous game based on matchsticks.
+	There is a certain number of matchstick lines.
+	The two players take turns; each player can, on a same line, take one or several matchsticks.
+	The losing player is the one to take the last matchstick.
+
+MARK:
+
+	19/20
